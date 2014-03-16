@@ -15,21 +15,27 @@
 	</head>
 	<body>
 		</br></br>
-		<div class = "large-10 large-centered columns" style = "background: rgba(48,66,105, 0.95);">
+		<div class = "large-10 large-centered columns" style = "background: #161E30;">
 		</br>	
 		<h2>Recent News On?</h2>
 		<form>
 			<input type = "type" id = "word" ></input>
-			<input type = "button" value = "Go!" onclick="getNews()"> </input>
+			<input type = "button" id = "but" value = "Go!" onclick="getNews()"> </input>
 		</form>
 		</br>
 		
 			<script>
+			$("#word").keyup(function (event) {
+			    if (event.keyCode == 13) {
+			    	console.log("here");
+			       getNews();
+			    }
+			 });
+
 			function getNews() {
 				var word = document.getElementById("word").value;
 				$.getJSON("http://api.feedzilla.com/v1/articles/search.json?q="
 					+ word + "&title_only=0&count=10", function(data){
-						console.log(data);
 				$.each(data.articles, function(i,articles){
 					if(i == 0) {
 					$("#stuff").html("<div class = 'large-10 large-centered columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>");
