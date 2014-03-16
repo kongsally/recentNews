@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 
-		<title>Recent Newss</title>
+		<title>Recent News</title>
 
 	
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -27,13 +27,12 @@
 			function getNews() {
 				var word = document.getElementById("word").value;
 				$.getJSON("http://api.feedzilla.com/v1/articles/search.json?q="
-					+ word + "&title_only=1&count=10", function(data){
+					+ word + "&title_only=0&count=10", function(data){
 						console.log(data);
 				$.each(data.articles, function(i,articles){
 					if(i == 0) {
 					$("#stuff").html("<div class = 'large-10 large-centered columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>");
 					} else {
-						console.log(i);
 						$("<div class = 'large-10 large-centered  columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>").appendTo("#stuff");
 					}
 				});
