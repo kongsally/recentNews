@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 
-		<title>Recent Newss</title>
+		<title>Recent News</title>
 
 	
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -13,36 +13,37 @@
 		<!--Header and Nav-->
 	</head>
 	<body>
-	
-			</br></br></br></br></br>
-			<h2>Recent News On?</h2>
-			<form>
-				<input type = "type" id = "word" ></input>
-				<input type = "button" value = "Go!" onclick="getNews()"> </input>
-			</form>
+		</br></br>
+		<div class = "large-10 large-centered columns" style = "background: rgba(48,66,105, 0.8);">
+		</br>	
+		<h2>Recent News On?</h2>
+		<form>
+			<input type = "type" id = "word" ></input>
+			<input type = "button" value = "Go!" onclick="getNews()"> </input>
+		</form>
+		</br>
 		
 			<script>
-
-		
 			function getNews() {
 				var word = document.getElementById("word").value;
 				$.getJSON("http://api.feedzilla.com/v1/articles/search.json?q="
-					+ word + "&title_only=1&count=99", function(data){
+					+ word + "&title_only=0&count=10", function(data){
 						console.log(data);
 				$.each(data.articles, function(i,articles){
-					
-					$("#stuff").html("<div class = 'large-7 large-centered columns'><div class = 'panel'><h3>" + articles.title+ " </h3>" + "<p>" + articles.publish_date + "</p></div></div>");
+					if(i == 0) {
+					$("#stuff").html("<div class = 'large-10 large-centered columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>");
+					} else {
+						$("<div class = 'large-10 large-centered  columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>").appendTo("#stuff");
+					}
 				});
 				});
-		
 			}
-
-			
 			</script>
 			
-		  <div id = "stuff"></div>
-			
+		 	<div id = "stuff"></div>		
+			</br>
 		</div>
+	</br>
 
 	</body>
 </html>
