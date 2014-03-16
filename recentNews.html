@@ -30,10 +30,8 @@
 					+ word + "&title_only=1&count=99", function(data){
 						console.log(data);
 				$.each(data.articles, function(i,articles){
-					setInterval(function(){
+					
 					$("#stuff").html("<div class = 'large-7 large-centered columns'><div class = 'panel'><h3>" + articles.title+ " </h3>" + "<p>" + articles.publish_date + "</p></div></div>");
-				},1000);
-				
 				});
 				});
 		
