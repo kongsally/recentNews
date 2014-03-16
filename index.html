@@ -17,7 +17,7 @@
 		</br></br>
 		<div class = "large-10 large-centered columns" style = "background: #161E30;">
 		</br>	
-		<h2>Recent News On?</h2>
+		<h2 id = "header">Recent News On?</h2>
 		<form>
 			<input type = "type" id = "word" ></input>
 			<input type = "button" id = "but" value = "Go!" onclick="getNews()"> </input>
@@ -34,6 +34,7 @@
 
 			function getNews() {
 				var word = document.getElementById("word").value;
+				$("#header").html("Something about: " + word);
 				$.getJSON("http://api.feedzilla.com/v1/articles/search.json?q="
 					+ word + "&title_only=0&count=10", function(data){
 				$.each(data.articles, function(i,articles){
