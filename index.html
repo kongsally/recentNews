@@ -1,0 +1,48 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+
+		<title>Recent Newss</title>
+
+	
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="./css/foundation.css">
+		<script src = "jquery.js"></script>
+
+		<!--Header and Nav-->
+	</head>
+	<body>
+	
+			</br></br></br></br></br>
+			<h2>Recent News On?</h2>
+			<form>
+				<input type = "type" id = "word" ></input>
+				<input type = "button" value = "Go!" onclick="getNews()"> </input>
+			</form>
+		
+			<script>
+
+		
+			function getNews() {
+				var word = document.getElementById("word").value;
+				$.getJSON("http://api.feedzilla.com/v1/articles/search.json?q="
+					+ word + "&title_only=1&count=99", function(data){
+						console.log(data);
+				$.each(data.articles, function(i,articles){
+					
+					$("#stuff").html("<div class = 'large-7 large-centered columns'><div class = 'panel'><h3>" + articles.title+ " </h3>" + "<p>" + articles.publish_date + "</p></div></div>");
+				});
+				});
+		
+			}
+
+			
+			</script>
+			
+		  <div id = "stuff"></div>
+			
+		</div>
+
+	</body>
+</html>
