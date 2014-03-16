@@ -31,10 +31,10 @@
 						console.log(data);
 				$.each(data.articles, function(i,articles){
 					if(i == 0) {
-					$("#stuff").html("<div class = 'large-10 large-centered columns'><div class = 'panel'><h6>" + articles.title+ " </h6>" + "<p>" + articles.publish_date + "</p></div></div>");
+					$("#stuff").html("<div class = 'large-10 large-centered columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>");
 					} else {
 						console.log(i);
-						$("<div class = 'large-10 large-centered  columns'><div class = 'panel'><h6>" + articles.title+ " </h6>" + "<p>" + articles.publish_date + "</p></div></div>").appendTo("#stuff");
+						$("<div class = 'large-10 large-centered  columns'><div class = 'panel'><a href = '" + articles.url + "'><h6>" + articles.title+ " </h6></a>" + "<p>" + articles.publish_date + "</p></div></div>").appendTo("#stuff");
 					}
 				});
 				});
